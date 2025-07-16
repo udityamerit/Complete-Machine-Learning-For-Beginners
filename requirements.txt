@@ -1,1 +1,5 @@
-pandas 
+pandas
+openpyxl
+numpy
+matplotlib
+ 
