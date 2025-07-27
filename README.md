@@ -51,7 +51,7 @@ This repository is structured as a **complete ML roadmap** combining theory (PDF
 To run the notebooks locally:
 
 ```bash
-git clone https://github.com/your-username/complete-ml-roadmap.git
+git clone https://github.com/udityamerit/Complete-Machine-Learning-For-Beginners.git
 cd complete-ml-roadmap
 pip install -r requirements.txt
 ````
