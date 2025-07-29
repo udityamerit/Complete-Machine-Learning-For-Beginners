@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildfire Risk Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --primary-light: #ff9e35;
+            --secondary: #004e89;
+            --dark: #2d3748;
+            --light: #f8fafc;
+            --success: #38a169;
+            --danger: #e53e3e;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: var(--dark);
+        }
+        
+        .result-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 900px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .result-header h1 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .result-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .prediction-container {
+            background: rgba(248, 250, 252, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: fadeInUp 0.8s;
+        }
+        
+        .prediction-value {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 1rem 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .risk-level {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            animation: fadeIn 1s;
+        }
+        
+        .low-risk {
+            background: rgba(56, 161, 105, 0.1);
+            color: var(--success);
+            border: 2px solid var(--success);
+        }
+        
+        .moderate-risk {
+            background: rgba(221, 107, 32, 0.1);
+            color: var(--warning);
+            border: 2px solid var(--warning);
+        }
+        
+        .high-risk {
+            background: rgba(229, 62, 62, 0.1);
+            color: var(--danger);
+            border: 2px solid var(--danger);
+        }
+        
+        .chart-container {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 1s;
+        }
+        
+        .parameters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .parameter-card {
+            background: rgba(248, 250, 252, 0.7);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .parameter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .parameter-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .parameter-card p {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            animation: fadeInUp 0.8s;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .result-card {
+                padding: 1.5rem;
+            }
+            
+            .result-header h1 {
+                font-size: 2rem;
+            }
+            
+            .prediction-value {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-card animate__animated animate__fadeIn">
+        <div class="result-header">
+            <h1>Wildfire Risk Assessment</h1>
+            <p>Your Fire Weather Index Calculation</p>
+        </div>
+        
+        <div class="prediction-container">
+            <h2>Predicted Fire Weather Index</h2>
+            <div class="prediction-value">{{ prediction }}</div>
+            
+            {% if prediction < 10 %}
+            <div class="risk-level low-risk">LOW RISK</div>
+            {% elif prediction < 30 %}
+            <div class="risk-level moderate-risk">MODERATE RISK</div>
+            {% else %}
+            <div class="risk-level high-risk">HIGH RISK</div>
+            {% endif %}
+        </div>
+        
+        <div class="chart-container">
+            <h3>Risk Level Visualization</h3>
+            <img src="data:image/png;base64,{{ chart_url }}" alt="Risk Chart" style="width:100%">
+        </div>
+        
+        <h3 style="margin-top: 2rem;">Input Parameters</h3>
+        <div class="parameters-grid">
+            <div class="parameter-card animate__animated animate__fadeInUp">
+                <h3>Temperature</h3>
+                <p>{{ input_data.Temperature }} °C</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-1s">
+                <h3>Relative Humidity</h3>
+                <p>{{ input_data.RH }}%</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-2s">
+                <h3>Wind Speed</h3>
+                <p>{{ input_data.Ws }} km/h</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp">
+                <h3>Rain</h3>
+                <p>{{ input_data.Rain }} mm</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-1s">
+                <h3>FFMC Index</h3>
+                <p>{{ input_data.FFMC }}</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-2s">
+                <h3>DMC Index</h3>
+                <p>{{ input_data.DMC }}</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp">
+                <h3>ISI Index</h3>
+                <p>{{ input_data.ISI }}</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-1s">
+                <h3>Fire Class</h3>
+                <p>{{ input_data.Classes }}</p>
+            </div>
+            
+            <div class="parameter-card animate__animated animate__fadeInUp animate__delay-2s">
+                <h3>Region</h3>
+                <p>{{ input_data.Region }}</p>
+            </div>
+        </div>
+        
+        <a href="/" class="back-btn">New Assessment</a>
+    </div>
+</body>
+</html>
