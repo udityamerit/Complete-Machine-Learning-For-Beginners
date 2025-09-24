@@ -1,9 +1,7 @@
 <h1 align="center">🧠 Complete Machine Learning Roadmap For Beginners </h1>
-
 <p align="center">
   A comprehensive, step-by-step learning repository covering the complete journey from statistics to machine learning model deployment using Python.
 </p>
-
 <p align="center">
   <a href="https://github.com/udityamerit"><img src="https://img.shields.io/github/followers/udityamerit?label=GitHub&style=social" /></a>
   <a href="https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/"><img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&style=flat&logoColor=white" /></a>
