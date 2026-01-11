@@ -1,5 +1,8 @@
 <h1 align="center">🧠 Complete Machine Learning Roadmap For Beginners </h1>
 <p align="center">
+
+![alt text](image.png)
+
   A comprehensive, step-by-step learning repository covering the complete journey from statistics to machine learning model deployment using Python.
 </p>
 <p align="center">
