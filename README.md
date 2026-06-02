@@ -19,22 +19,7 @@ This repository is structured as a **complete ML roadmap** combining theory (PDF
 
 ---
 
-## 🗂️ Folder Structure
-
-| Folder | Description |
-|--------|-------------|
-| `0-Dataset` | Contains all datasets used in the course |
-| `1-Getting Started With Statistics` | Basics of descriptive statistics and ML relevance |
-| `2-Introduction To Probability` | Covers probability rules, addition/multiplication (with PDFs) |
-| `3-Probability Distribution Function` | Common distributions: Normal, Binomial, Poisson, etc. |
-| `4-Inferential Statistics` | Concepts like hypothesis testing, p-values, confidence intervals |
-| `5-Feature Engineering` | Handling missing data, outliers, SMOTE, encoding |
-| `6-Exploratory Data Analysis (EDA)` | EDA on Wine, Flights, and Play Store datasets |
-| `7-Introduction To Machine Learning` | Basic concepts, types of ML, model workflow |
-| `8-Complete Linear Regression` | Simple, Multiple & Polynomial Regression from scratch |
-| `9-Ridge, Lasso & ElasticNet` | Regularization techniques for robust modeling |
-| `10-Project Implementation` | Mini-projects applying linear models on real data |
-
+![alt text](ML.png)
 ---
 
 ## 🔍 Key Features
